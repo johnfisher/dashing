@@ -1,0 +1,55 @@
+/*
+ Theme Name:   Predictive Analytics Today 2.2
+ Theme URI: http://www.predictiveanalyticstoday.com
+ Description:  Predictive Analytics Today 2.2
+ Author:       Predictive Analytics Today 2.2
+ Author URI:   http://www.predictiveanalyticstoday.com
+ Template:     engine
+ Version:      1.0.2
+ License:
+ License URI:
+ Tags:         right-sidebar, left-sidebar, theme-options, threaded-comments, responsive-layout, three-columns, two-columns, translation-ready, custom-menu
+ Text Domain:  engine-child
+*/
+
+#comments .comment-rating .rating{display:inline-block;margin-right:20px;width:auto;padding-top:4px;font-weight:300;font-size:12px;text-transform:uppercase;font-weight:bolder}
+#comments .comment-rating .value{font-size:18px;font-weight:bolder}
+#comments .comment-rating .critery-comment{margin-bottom: 10px;margin-top:2px;}
+#comments .comment-text {padding:0}
+#comments .comment-content p {text-align: justify}
+#reply-form .rating-wrapper.company-size label {margin-right:10px;}
+
+.comment-fields-container,.comment-ratings-container{width:auto;float:none;margin-bottom:20px}
+
+.magazine-header .magazine-title {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 15px 10px 10px;
+}
+
+.ec-filter-block .bb1 { float: left; width: 25%; padding:10px;  }
+.ec-filter-block .bb1-title { color: gray; text-transform: uppercase; margin-bottom: 10px; }
+.ec-filter-block .bb1 label.inactive-filter { color: gray }
+.ec-filter-block .bb1 label { width: 100% }
+.ec-filter-block .bb1 label .facet-count { display: block; float: right }
+.ec-filter-block { margin: 15px; }
+.ec-filter-block .bb { border: 1px solid blue; background-color: lightgray; margin-bottom: 5px; overflow: auto; }
+.ec-filter-block input.submit{ text-transform: uppercase; background-color: #FFF; width: 100%; border-color: #CCC; color: #000; font-weight: 700;}
+.ec-more { text-transform: none }
+
+@media (max-width: 650px) {
+    .ec-filter-block .bb1 { width: 50%; }
+}
+@media (max-width: 400px) {
+    .ec-filter-block .bb1 { width: 100%; }
+}
+
+.trending-toggle, .sharing-toggle, .compare-toggle { color: #37A000 }
+
+.theme-icon-sidebar:after {
+    content: 'Compare';
+    font-size: 15px;
+    vertical-align: middle;
+    display: inline-block;
+    margin-bottom: 4px;
+}

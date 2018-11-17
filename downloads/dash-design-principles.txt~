@@ -1,0 +1,18 @@
+## dasher project dash design principles ## 
+
+importance has a visual heirarchy
+level of importance changes with value and with values of other gauges
+bright backgrounds are blinding at night ( e.g. aircraft cockpit design doesn't fit cars)
+rows and matrices of identical gauges/switches are hard to read - see space shuttle dash!
+emulation of 3D is not necessarily a good thing
+sliders, bar graphs, round gauges should have bracketing which delineates the full range
+it can be good to have both digital and visual output
+everything should be themed to accommodate tastes and disabilities ( color blindness etc) also helps immensely with design interation
+rear-camera display can be overlaid with gauges, with care
+many people cannot read small text - maybe themeing is good here
+colors have meaning, but maybe not the same meaning in all cultures?- theme
+icons are not generally useful
+clutter is bad
+values have changing meaning- speedo at 25, at 50 at 95 - at 25 check against city speed limit, low importance. at 65 check against highway speed limit, watch tickets, medium importance. at 95 danger and tickets/jail
+values don't change linearly; values meaning changes in thresholds more than linearly - engine temp at 50-180F just fine-ignore, engine temp at 230F-WARNING
+idiot lights have a use- they only react when some big thing has changed- time to service- over-heat-charger plugged in

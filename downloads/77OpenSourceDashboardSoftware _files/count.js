@@ -1,0 +1,1 @@
+WPCOMSharing.update_pinterest_count({"url":"http://www.predictiveanalyticstoday.com/open-source-dashboard-software/","count":6})

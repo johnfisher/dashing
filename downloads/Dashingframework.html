@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Dashing - The exceptionally handsome dashboard framework.</title>
+  <meta name="description" content="">
+
+  <meta name="viewport" content="width=device-width">
+
+  <link href="Dashingframework_files/css.css" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="Dashingframework_files/font-awesome.css">
+  <link rel="stylesheet" href="Dashingframework_files/style.css">
+
+  <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-82702-43']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+  </script>
+</head>
+<body>
+  <div role="main" id="container">
+    <nav id="main-navigation">
+      <ul class="clearfix">
+        <li><a href="#overview">Introduction</a></li>
+        <li><a href="http://dashingdemo.herokuapp.com/sample" target="_blank">Demo</a></li>
+        <li><a href="#setup">Getting Started</a></li>
+        <li><a href="#widgets">Example Setup</a></li>
+        <li><a href="#data">API</a></li>
+        <li><a href="#license">License</a></li>
+        <li><a href="https://github.com/Shopify/dashing/issues" target="_blank">Issues</a></li>
+      </ul>
+    </nav>
+
+    <section id="heading" class="clearfix">
+      <div id="logo-heading">
+        <h1>Dashing</h1>
+        <h2>The exceptionally handsome dashboard framework.</h2>
+      </div>
+      <div id="logo-bowtie">
+        <img src="Dashingframework_files/bowtie.png">
+      </div>
+      <div id="actions">
+        <a class="button" href="https://github.com/Shopify/dashing" target="_blank"><i class="icon-github"></i> View on Github</a>
+        <a class="button" href="https://github.com/Shopify/dashing/zipball/master"><i class="icon-download"></i> Download ZIP</a>
+      </div>
+      <div id="actions-github">
+        
+        
+      </div>
+    </section>
+
+
+    <section class="section-box" id="overview">
+      <div class="deprecation-warning">
+        Heads-up: Dashing still works great, but is no longer maintained. Read up about it <a href="https://github.com/Shopify/dashing/issues/711">over here</a>.
+        <br>
+        You can also use the <a target="_blank" href="https://github.com/dashing-io/dashing">fork of the project</a>.
+      </div>
+      <h3 class="section-title">Introduction</h3>
+      <div class="section-content">
+        <p>Dashing is a Sinatra based framework that lets you build beautiful dashboards.</p>
+        <p>Check out a demo over <a href="http://dashingdemo.herokuapp.com/sample" target="_blank">here</a>. <a href="http://dashingdemo.herokuapp.com/sampletv" target="_blank">Here's another one</a>, optimized for 1080p screens.</p>
+
+        <p><strong>Key features:</strong>
+        </p><ul>
+          <li>Use premade widgets, or fully create your own with scss, html, and coffeescript.</li>
+          <li>Widgets harness the power of data bindings to keep things DRY and simple. Powered by <a href="http://batmanjs.org/" target="_blank">batman.js</a>.</li>
+          <li>Use the API to push data to your dashboards, or make use of a simple ruby DSL for fetching data.</li>
+          <li>Drag &amp; Drop interface for re-arranging your widgets.</li>
+          <li><a href="https://github.com/Shopify/dashing/wiki/How-to%3A-Deploy-to-Heroku" target="_blank">Host your dashboards on Heroku</a> in less than 30 seconds.</li>
+        </ul>
+        <p></p>
+
+        <p>This project was created at <a href="http://shopify.com/" target="_blank">Shopify</a> for displaying custom dashboards on TVs around the office.</p>
+      </div>
+    </section>
+
+    <section class="section-box" id="setup">
+      <h3 class="section-title">Getting Started</h3>
+      <div class="section-content">
+        <ol>
+          <li>
+            <p> Install the gem from the command line. Make sure you have Ruby 1.9+</p>
+            <p><code>$ gem install dashing</code></p>
+          </li>
+          <li>
+            <p> Generate a new project</p>
+            <p><code>$ dashing new sweet_dashboard_project</code></p>
+          </li>
+          <li>
+            <p> Change your directory to <code>sweet_dashboard_project</code> and bundle gems</p>
+            <p><code>$ bundle</code></p>
+          </li>
+          <li>
+            <p>Start the server!</p>
+            <p><code>$ dashing start</code></p>
+          </li>
+          <li>
+            <p> Point your browser at <a href="http://localhost:3030/">localhost:3030</a> and have fun!</p>
+          </li>
+        </ol>
+        <hr>
+        <p>Every new Dashing project comes with sample widgets &amp; 
+sample dashboards for you to explore. The directory is setup as follows:</p>
+        <ul>
+          <li><strong>Assets</strong> —  All your images, fonts, and js/coffeescript libraries. <i>Uses <a href="https://github.com/sstephenson/sprockets" target="_blank">Sprockets</a></i></li>
+          <li><strong>Dashboards</strong> — One .erb file for each dashboard that contains the layout for the widgets.</li>
+          <li><strong>Jobs</strong> — Your ruby jobs for fetching data (e.g for calling third party APIs like twitter).</li>
+          <li><strong>Lib</strong> — Optional ruby files to help out your jobs.</li>
+          <li><strong>Public</strong> — Static files that you want to serve. A good place for a favicon or a custom 404 page.</li>
+          <li><strong>Widgets</strong> — All the html/css/coffee for individual widgets.</li>
+        </ul>
+        <p>Run <code>dashing</code> from command line to find out what command line tools are available to you.</p>
+      </div>
+    </section>
+
+    <section class="section-box" id="widgets">
+      <h3 class="section-title">Example Dashboard</h3>
+      <div class="section-content">
+        Here's a sample dashboard with 2 widgets. With a name of <code>sample.erb</code>, it becomes accessible at <code>/sample</code>.
+        <br>
+        <br>
+
+        <script src="Dashingframework_files/3977816.js"></script><link rel="stylesheet" href="Dashingframework_files/gist-embed-b03925b9c18fa42b22f168e7d17a7ca70ca50a4126cbfca9f.css"><div id="gist3977816" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-sample-erb" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-html-erb">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-sample-erb-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-sample-erb-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-pse">&lt;%</span><span class="pl-s1"> content_for(<span class="pl-c1">:title</span>) { <span class="pl-s"><span class="pl-pds">"</span>My super sweet dashboard<span class="pl-pds">"</span></span> } </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span></td>
+      </tr>
+      <tr>
+        <td id="file-sample-erb-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-sample-erb-LC2" class="blob-code blob-code-inner js-file-line">&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>gridster<span class="pl-pds">"</span></span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="file-sample-erb-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-sample-erb-LC3" class="blob-code blob-code-inner js-file-line">  &lt;<span class="pl-ent">ul</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="file-sample-erb-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-sample-erb-LC4" class="blob-code blob-code-inner js-file-line">    &lt;<span class="pl-ent">li</span> <span class="pl-e">data-row</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">data-col</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">data-sizex</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">data-sizey</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="file-sample-erb-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-sample-erb-LC5" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">div</span> <span class="pl-e">data-id</span>=<span class="pl-s"><span class="pl-pds">"</span>karma<span class="pl-pds">"</span></span> <span class="pl-e">data-view</span>=<span class="pl-s"><span class="pl-pds">"</span>Number<span class="pl-pds">"</span></span> <span class="pl-e">data-title</span>=<span class="pl-s"><span class="pl-pds">"</span>Karma<span class="pl-pds">"</span></span> <span class="pl-e">style</span>=<span class="pl-s"><span class="pl-pds">"</span>background-color:#96bf48;<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="file-sample-erb-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-sample-erb-LC6" class="blob-code blob-code-inner js-file-line">    &lt;/<span class="pl-ent">li</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="file-sample-erb-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-sample-erb-LC7" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-sample-erb-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-sample-erb-LC8" class="blob-code blob-code-inner js-file-line">    &lt;<span class="pl-ent">li</span> <span class="pl-e">data-row</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">data-col</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">data-sizex</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">data-sizey</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="file-sample-erb-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-sample-erb-LC9" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">div</span> <span class="pl-e">data-id</span>=<span class="pl-s"><span class="pl-pds">"</span>valuation<span class="pl-pds">"</span></span> <span class="pl-e">data-view</span>=<span class="pl-s"><span class="pl-pds">"</span>Number<span class="pl-pds">"</span></span> <span class="pl-e">data-title</span>=<span class="pl-s"><span class="pl-pds">"</span>Current Valuation<span class="pl-pds">"</span></span> <span class="pl-e">data-prefix</span>=<span class="pl-s"><span class="pl-pds">"</span>$<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="file-sample-erb-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-sample-erb-LC10" class="blob-code blob-code-inner js-file-line">    &lt;/<span class="pl-ent">li</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="file-sample-erb-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-sample-erb-LC11" class="blob-code blob-code-inner js-file-line">  &lt;/<span class="pl-ent">ul</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="file-sample-erb-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-sample-erb-LC12" class="blob-code blob-code-inner js-file-line">&lt;/<span class="pl-ent">div</span>&gt;</td>
+      </tr>
+</tbody></table>
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/pushmatrix/3977816/raw/530fecaddc62fd6839430f17245e9a870ee42951/sample.erb" style="float:right">view raw</a>
+        <a href="https://gist.github.com/pushmatrix/3977816#file-sample-erb">sample.erb</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+
+
+        <p>Each widget is represented by a <code>div</code> element needing <code>data-id</code> and <code>data-view</code> attributes. The wrapping <code>&lt;li&gt;</code>tags are used for <a href="#positioning">layout</a>.</p>
+        <p><code>data-id</code>: Sets the <strong>widget ID</strong> 
+which will be used when pushing data to the widget. Two widgets can have
+ the same widget id, allowing you to have the same widget in multiple 
+dashboards. <a href="#data">Push data</a> to that id, and each instance will be updated.</p>
+
+        <p><code>data-view</code>: Specifies the type of widget that will be used.</p>
+
+        <p>Both these widgets are of the same type: <code>Number</code>. However, using different <code>data-</code>
+ attributes lets you customize them. You can use any arbitrary attribute
+ you want — each one will be available for you within the widget logic.</p>
+        <div class="widgets"><img src="Dashingframework_files/widget1.png" alt="Widget">&nbsp;<img src="Dashingframework_files/widget2.png" alt="Widget"></div>
+
+        <h4>Anatomy of a widget</h4>
+        <ul>
+          <li>an HTML file used for layout and bindings</li>
+          <li>a SCSS file for styles</li>
+          <li>a coffeescript file which allows you to handle incoming data &amp; functionality</li>
+        </ul>
+
+        <h5><code>Number</code> widget's HTML:</h5>
+        <script src="Dashingframework_files/3978209.js"></script><link rel="stylesheet" href="Dashingframework_files/gist-embed-b03925b9c18fa42b22f168e7d17a7ca70ca50a4126cbfca9f.css"><div id="gist3978209" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-number-html" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-html">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-number-html-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-number-html-LC1" class="blob-code blob-code-inner js-file-line">&lt;<span class="pl-ent">h1</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>title<span class="pl-pds">"</span></span> <span class="pl-e">data-bind</span>=<span class="pl-s"><span class="pl-pds">"</span>title<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">h1</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="file-number-html-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-number-html-LC2" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-number-html-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-number-html-LC3" class="blob-code blob-code-inner js-file-line">&lt;<span class="pl-ent">h2</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>value<span class="pl-pds">"</span></span> <span class="pl-e">data-bind</span>=<span class="pl-s"><span class="pl-pds">"</span>current | shortenedNumber | prepend prefix<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">h2</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="file-number-html-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-number-html-LC4" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-number-html-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-number-html-LC5" class="blob-code blob-code-inner js-file-line">&lt;<span class="pl-ent">p</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>change-rate<span class="pl-pds">"</span></span>&gt; </td>
+      </tr>
+      <tr>
+        <td id="file-number-html-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-number-html-LC6" class="blob-code blob-code-inner js-file-line">  &lt;<span class="pl-ent">i</span> <span class="pl-e">data-bind-class</span>=<span class="pl-s"><span class="pl-pds">"</span>arrow<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">i</span>&gt;&lt;<span class="pl-ent">span</span> <span class="pl-e">data-bind</span>=<span class="pl-s"><span class="pl-pds">"</span>difference<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">span</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="file-number-html-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-number-html-LC7" class="blob-code blob-code-inner js-file-line">&lt;/<span class="pl-ent">p</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="file-number-html-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-number-html-LC8" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-number-html-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-number-html-LC9" class="blob-code blob-code-inner js-file-line">&lt;<span class="pl-ent">p</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>more-info<span class="pl-pds">"</span></span> <span class="pl-e">data-bind</span>=<span class="pl-s"><span class="pl-pds">"</span>moreinfo | raw<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">p</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="file-number-html-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-number-html-LC10" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-number-html-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-number-html-LC11" class="blob-code blob-code-inner js-file-line">&lt;<span class="pl-ent">p</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>updated-at<span class="pl-pds">"</span></span> <span class="pl-e">data-bind</span>=<span class="pl-s"><span class="pl-pds">"</span>updatedAtMessage<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">p</span>&gt;</td>
+      </tr>
+</tbody></table>
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/pushmatrix/3978209/raw/59d414569fdbdd21e870eb79bbddb86aaa934b28/number.html" style="float:right">view raw</a>
+        <a href="https://gist.github.com/pushmatrix/3978209#file-number-html">number.html</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+
+        <p>Widgets use <a href="http://batmanjs.org/docs/api/batman.view_bindings.html" target="_blank">batman bindings</a> in order to update their contents. Whenever the data changes, the DOM will automatically reflect the changes.</p>
+        <p>You may notice the piping '|' characters in some of the <code>data-bind</code>'s above. These are <a href="http://batmanjs.org/docs/api/batman.view_bindings.html#keypath_filters" target="_blank">Batman Filters</a>, and let you easily format the representation of data.
+        </p><h5><code>Number</code> widget's Coffeescript:</h5>
+        <script src="Dashingframework_files/3978186.js"></script><link rel="stylesheet" href="Dashingframework_files/gist-embed-b03925b9c18fa42b22f168e7d17a7ca70ca50a4126cbfca9f.css"><div id="gist3978186" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-number-coffee" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-coffeescript">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-number-coffee-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-number-coffee-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">class</span> <span class="pl-en">Dashing.Number</span> <span class="pl-k">extends</span> <span class="pl-e">Dashing.Widget</span></td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-number-coffee-LC2" class="blob-code blob-code-inner js-file-line">  <span class="pl-en">ready</span><span class="pl-k">:</span> <span class="pl-k"><span class="pl-k">-&gt;</span></span></td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-number-coffee-LC3" class="blob-code blob-code-inner js-file-line">    <span class="pl-c"># This is fired when the widget is done being rendered</span></td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-number-coffee-LC4" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-number-coffee-LC5" class="blob-code blob-code-inner js-file-line">  <span class="pl-en">onData</span><span class="pl-k">:</span><span class="pl-smi"> <span class="pl-smi">(data)</span></span> <span class="pl-k"><span class="pl-k">-&gt;</span></span></td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-number-coffee-LC6" class="blob-code blob-code-inner js-file-line">    <span class="pl-c"># Fired when you receive data</span></td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-number-coffee-LC7" class="blob-code blob-code-inner js-file-line">    <span class="pl-c"># You could do something like have the widget flash each time data comes in by doing:</span></td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-number-coffee-LC8" class="blob-code blob-code-inner js-file-line">    <span class="pl-c"># $(@node).fadeOut().fadeIn()</span></td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-number-coffee-LC9" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-number-coffee-LC10" class="blob-code blob-code-inner js-file-line">  <span class="pl-c"># Any attribute that has the 'Dashing.AnimatedValue' will cause the number to animate when it changes. </span></td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-number-coffee-LC11" class="blob-code blob-code-inner js-file-line">  @<span class="pl-en">accessor</span> <span class="pl-s"><span class="pl-pds">'</span>current<span class="pl-pds">'</span></span>, Dashing.AnimatedValue</td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-number-coffee-LC12" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-number-coffee-LC13" class="blob-code blob-code-inner js-file-line">  <span class="pl-c"># Calculates the % difference between current &amp; last values.</span></td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-number-coffee-LC14" class="blob-code blob-code-inner js-file-line">  @<span class="pl-en">accessor</span> <span class="pl-s"><span class="pl-pds">'</span>difference<span class="pl-pds">'</span></span>, <span class="pl-k">-&gt;</span></td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-number-coffee-LC15" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">if</span> @<span class="pl-en">get</span>(<span class="pl-s"><span class="pl-pds">'</span>last<span class="pl-pds">'</span></span>)</td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-number-coffee-LC16" class="blob-code blob-code-inner js-file-line">      <span class="pl-v">last</span> <span class="pl-k">=</span> <span class="pl-c1">parseInt</span>(@<span class="pl-en">get</span>(<span class="pl-s"><span class="pl-pds">'</span>last<span class="pl-pds">'</span></span>))</td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-number-coffee-LC17" class="blob-code blob-code-inner js-file-line">      <span class="pl-v">current</span> <span class="pl-k">=</span> <span class="pl-c1">parseInt</span>(@<span class="pl-en">get</span>(<span class="pl-s"><span class="pl-pds">'</span>current<span class="pl-pds">'</span></span>))</td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="file-number-coffee-LC18" class="blob-code blob-code-inner js-file-line">      <span class="pl-k">if</span> last <span class="pl-k">!=</span> <span class="pl-c1">0</span></td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="file-number-coffee-LC19" class="blob-code blob-code-inner js-file-line">        <span class="pl-v">diff</span> <span class="pl-k">=</span> <span class="pl-c1">Math</span>.<span class="pl-en">abs</span>(<span class="pl-c1">Math</span>.<span class="pl-en">round</span>((current <span class="pl-k">-</span> last) <span class="pl-k">/</span> last <span class="pl-k">*</span> <span class="pl-c1">100</span>))</td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L20" class="blob-num js-line-number" data-line-number="20"></td>
+        <td id="file-number-coffee-LC20" class="blob-code blob-code-inner js-file-line">        <span class="pl-s"><span class="pl-pds">"</span><span class="pl-s1"><span class="pl-pse">#{</span>diff<span class="pl-pse">}</span></span>%<span class="pl-pds">"</span></span></td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L21" class="blob-num js-line-number" data-line-number="21"></td>
+        <td id="file-number-coffee-LC21" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">else</span></td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L22" class="blob-num js-line-number" data-line-number="22"></td>
+        <td id="file-number-coffee-LC22" class="blob-code blob-code-inner js-file-line">      <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span></td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L23" class="blob-num js-line-number" data-line-number="23"></td>
+        <td id="file-number-coffee-LC23" class="blob-code blob-code-inner js-file-line">  <span class="pl-c"># Picks the direction of the arrow based on whether the current value is higher or lower than the last</span></td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L24" class="blob-num js-line-number" data-line-number="24"></td>
+        <td id="file-number-coffee-LC24" class="blob-code blob-code-inner js-file-line">  @<span class="pl-en">accessor</span> <span class="pl-s"><span class="pl-pds">'</span>arrow<span class="pl-pds">'</span></span>, <span class="pl-k">-&gt;</span></td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L25" class="blob-num js-line-number" data-line-number="25"></td>
+        <td id="file-number-coffee-LC25" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">if</span> @<span class="pl-en">get</span>(<span class="pl-s"><span class="pl-pds">'</span>last<span class="pl-pds">'</span></span>)</td>
+      </tr>
+      <tr>
+        <td id="file-number-coffee-L26" class="blob-num js-line-number" data-line-number="26"></td>
+        <td id="file-number-coffee-LC26" class="blob-code blob-code-inner js-file-line">      <span class="pl-k">if</span> <span class="pl-c1">parseInt</span>(@<span class="pl-en">get</span>(<span class="pl-s"><span class="pl-pds">'</span>current<span class="pl-pds">'</span></span>)) <span class="pl-k">&gt;</span> <span class="pl-c1">parseInt</span>(@<span class="pl-en">get</span>(<span class="pl-s"><span class="pl-pds">'</span>last<span class="pl-pds">'</span></span>)) <span class="pl-k">then</span> <span class="pl-s"><span class="pl-pds">'</span>icon-arrow-up<span class="pl-pds">'</span></span> <span class="pl-k">else</span> <span class="pl-s"><span class="pl-pds">'</span>icon-arrow-down<span class="pl-pds">'</span></span></td>
+      </tr>
+</tbody></table>
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/pushmatrix/3978186/raw/9d7147510664ed4981e16eb4c7bec1cb454f8e74/number.coffee" style="float:right">view raw</a>
+        <a href="https://gist.github.com/pushmatrix/3978186#file-number-coffee">number.coffee</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+
+
+        <p>By default, whenever a widget receives JSON data, it mixes in
+ the received data onto itself. This means that if you pass in data with
+ a <code>title</code> attribute, the widget's <code>title</code> variable will change, and so will all DOM elements bound to it. No need to handle that yourself.</p>
+
+        <h4 id="positioning">Laying out the widgets</h4>
+
+        <p>Dashing uses <a href="http://gridster.net/" target="_blank">gridster.js</a> to create a layout for your widgets. Each widget is part of an unordered list. The <code>&lt;li&gt;</code> element for a widget contains:</p>
+        <ul>
+          <li><code>data-row</code> : What row the widget is on.</li>
+          <li><code>data-col</code> : What column the widget is on</li>
+          <li><code>data-sizex</code> : Integer size for the width of a widget</li>
+          <li><code>data-sizey</code> : Integer size for the height of a widget</li>
+        </ul>
+        <p>For both <code>data-row</code> and <code>data-col</code>, you can leave them as 1, and gridster will automatically position your widgets.</p>
+        <p>If you want to customize the layout easily, simply navigate 
+to your running dashboard, and drag the widgets with your mouse. You 
+will be prompted to save the layout when you're finished. Follow the 
+on-screen instructions.</p>
+        <p>For <code>data-sizex</code> and <code>data-sizey</code>, these are multiples of the widget dimensions you can configure in <code>application.coffee</code></p>
+        <script src="Dashingframework_files/3978786.js"></script><link rel="stylesheet" href="Dashingframework_files/gist-embed-b03925b9c18fa42b22f168e7d17a7ca70ca50a4126cbfca9f.css"><div id="gist3978786" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-application-coffee" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-coffeescript">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-application-coffee-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-application-coffee-LC1" class="blob-code blob-code-inner js-file-line">Dashing.<span class="pl-en">on</span> <span class="pl-s"><span class="pl-pds">'</span>ready<span class="pl-pds">'</span></span>, <span class="pl-k">-&gt;</span></td>
+      </tr>
+      <tr>
+        <td id="file-application-coffee-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-application-coffee-LC2" class="blob-code blob-code-inner js-file-line">  Dashing.widget_margins <span class="pl-k">||=</span> [<span class="pl-c1">5</span>, <span class="pl-c1">5</span>]</td>
+      </tr>
+      <tr>
+        <td id="file-application-coffee-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-application-coffee-LC3" class="blob-code blob-code-inner js-file-line">  Dashing.widget_base_dimensions <span class="pl-k">||=</span> [<span class="pl-c1">300</span>, <span class="pl-c1">360</span>]</td>
+      </tr>
+      <tr>
+        <td id="file-application-coffee-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-application-coffee-LC4" class="blob-code blob-code-inner js-file-line">  Dashing.numColumns <span class="pl-k">||=</span> <span class="pl-c1">4</span></td>
+      </tr>
+</tbody></table>
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/pushmatrix/3978786/raw/2d78839ba01186a5bae7bea2025ec440bafc9321/application.coffee" style="float:right">view raw</a>
+        <a href="https://gist.github.com/pushmatrix/3978786#file-application-coffee">application.coffee</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+
+      </div>
+    </section>
+
+    <section class="section-box" id="data">
+      <h3 class="section-title">Getting Data Into Your Widgets</h3>
+      <div class="section-content">
+
+        <p>Providing data to widgets is easy. You specify which widget 
+you want using a widget id, and then pass in the JSON data. There are 
+two ways to do this:</p>
+
+        <h4>Jobs</h4>
+
+        <p>Dashing uses <a href="https://github.com/jmettraux/rufus-scheduler" target="_blank">rufus-scheduler</a> to schedule jobs. You can make a new job with <code>dashing generate job sample_job</code>, which will create a file in the jobs directory called <code>sample_job.rb</code>.</p>
+
+        <h6>Example</h6>
+        <script src="Dashingframework_files/3978821.js"></script><link rel="stylesheet" href="Dashingframework_files/gist-embed-b03925b9c18fa42b22f168e7d17a7ca70ca50a4126cbfca9f.css"><div id="gist3978821" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-sample_job-rb" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-ruby">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-sample_job-rb-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-sample_job-rb-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># :first_in sets how long it takes before the job is first run. In this case, it is run immediately</span></td>
+      </tr>
+      <tr>
+        <td id="file-sample_job-rb-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-sample_job-rb-LC2" class="blob-code blob-code-inner js-file-line"><span class="pl-c1">SCHEDULER</span>.every <span class="pl-s"><span class="pl-pds">'</span>1m<span class="pl-pds">'</span></span>, <span class="pl-c1">:first_in</span> =&gt; <span class="pl-c1">0</span> <span class="pl-k">do </span>|<span class="pl-smi">job</span>|</td>
+      </tr>
+      <tr>
+        <td id="file-sample_job-rb-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-sample_job-rb-LC3" class="blob-code blob-code-inner js-file-line">  send_event(<span class="pl-s"><span class="pl-pds">'</span>karma<span class="pl-pds">'</span></span>, { <span class="pl-c1">current:</span> rand(<span class="pl-c1">1000</span>) })</td>
+      </tr>
+      <tr>
+        <td id="file-sample_job-rb-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-sample_job-rb-LC4" class="blob-code blob-code-inner js-file-line"><span class="pl-k">end</span></td>
+      </tr>
+</tbody></table>
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/pushmatrix/3978821/raw/ccce0f8878ba93e40906343a49296c42e512d20e/sample_job.rb" style="float:right">view raw</a>
+        <a href="https://gist.github.com/pushmatrix/3978821#file-sample_job-rb">sample_job.rb</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+
+
+        <p>This job will run every minute, and will send a random number to ALL widgets that have <code>data-id</code> set to 'karma'.</p><p>
+        </p><p>You send data using the following method:</p>
+        <code>send_event(widget_id, json_formatted_data)</code>
+        <br>
+        <p>Jobs are where you put stuff such as fetching metrics from a 
+database, or calling a third party API like Twitter. Since the data 
+fetch is happening in only one place, it means that all instances of 
+widgets are in sync. <a href="http://www.html5rocks.com/en/tutorials/eventsource/basics/" target="_blank">Server Sent Events</a> are used in order to stream data to the dashboards. </p>
+
+        <p>Note that if you modify a job then Dashing needs to be restarted to pick up the changes.</p>
+        <h4>API</h4>
+
+        <p>Your widgets can be updated directly over HTTP. Post the data you want in json to <code>/widgets/widget_id</code>.
+          For security, you will also have to include your auth_token (which can be found in <code>config.ru</code>).</p>
+
+        <h6>Example</h6>
+
+        <script src="Dashingframework_files/3978832.js"></script><link rel="stylesheet" href="Dashingframework_files/gist-embed-b03925b9c18fa42b22f168e7d17a7ca70ca50a4126cbfca9f.css"><div id="gist3978832" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-push-sh" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-shell">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-push-sh-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-push-sh-LC1" class="blob-code blob-code-inner js-file-line">curl -d <span class="pl-s"><span class="pl-pds">'</span>{ "auth_token": "YOUR_AUTH_TOKEN", "current": 100 }<span class="pl-pds">'</span></span> http://localhost:3030/widgets/karma</td>
+      </tr>
+</tbody></table>
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/pushmatrix/3978832/raw/b493ae1f981dddbc9775382f6f89ead1d79f6799/push.sh" style="float:right">view raw</a>
+        <a href="https://gist.github.com/pushmatrix/3978832#file-push-sh">push.sh</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+
+
+        <p>or</p>
+
+        <script src="Dashingframework_files/3981096.js"></script><link rel="stylesheet" href="Dashingframework_files/gist-embed-b03925b9c18fa42b22f168e7d17a7ca70ca50a4126cbfca9f.css"><div id="gist3981096" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-push-rb" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-ruby">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-push-rb-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-push-rb-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-c1">HTTParty</span>.post(<span class="pl-s"><span class="pl-pds">'</span>http://localhost:3030/widgets/karma<span class="pl-pds">'</span></span>,</td>
+      </tr>
+      <tr>
+        <td id="file-push-rb-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-push-rb-LC2" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">:body</span> =&gt; { <span class="pl-c1">auth_token:</span> <span class="pl-s"><span class="pl-pds">"</span>YOUR_AUTH_TOKEN<span class="pl-pds">"</span></span>, <span class="pl-c1">current:</span> <span class="pl-c1">1000</span> }.to_json)</td>
+      </tr>
+</tbody></table>
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/pushmatrix/3981096/raw/5632ee36f0cd1fb4aaff59bfc113f827c457d369/push.rb" style="float:right">view raw</a>
+        <a href="https://gist.github.com/pushmatrix/3981096#file-push-rb">push.rb</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+
+
+        <p>You can also perform dashboard-level actions by posting to <code>/dashboards/dashboard_id</code>. Currently there is a single event available, <code>reload</code>, that will refresh the target dashboard in the browser.</p>
+
+        <h6>Example</h6>
+
+        <script src="Dashingframework_files/6112780.js"></script><link rel="stylesheet" href="Dashingframework_files/gist-embed-b03925b9c18fa42b22f168e7d17a7ca70ca50a4126cbfca9f.css"><div id="gist6112780" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-curl-sh" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-shell">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-curl-sh-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-curl-sh-LC1" class="blob-code blob-code-inner js-file-line">curl -i -d <span class="pl-s"><span class="pl-pds">'</span>{ "auth_token": "YOUR_AUTH_TOKEN", "event": "reload"}<span class="pl-pds">'</span></span> http://localhost:3030/dashboards/sample</td>
+      </tr>
+</tbody></table>
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/davefp/6112780/raw/dc63c20be89c8e748ada3dc6530da5d02ad9c21d/curl.sh" style="float:right">view raw</a>
+        <a href="https://gist.github.com/davefp/6112780#file-curl-sh">curl.sh</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+
+
+        <p>If you want an event to target every dashboard, use a wildcard (<code>*</code>).</p>
+
+        <h6>Example</h6>
+
+        <script src="Dashingframework_files/6112780_002.js"></script><link rel="stylesheet" href="Dashingframework_files/gist-embed-b03925b9c18fa42b22f168e7d17a7ca70ca50a4126cbfca9f.css"><div id="gist6112780" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-curl2-sh" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-shell">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-curl2-sh-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-curl2-sh-LC1" class="blob-code blob-code-inner js-file-line">curl -i -d <span class="pl-s"><span class="pl-pds">'</span>{ "auth_token": "YOUR_AUTH_TOKEN", "event": "reload"}<span class="pl-pds">'</span></span> http://localhost:3030/dashboards/<span class="pl-k">*</span></td>
+      </tr>
+</tbody></table>
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/davefp/6112780/raw/dc63c20be89c8e748ada3dc6530da5d02ad9c21d/curl2.sh" style="float:right">view raw</a>
+        <a href="https://gist.github.com/davefp/6112780#file-curl2-sh">curl2.sh</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+
+
+        </div>
+      </section>
+
+      <section class="section-box" id="resources">
+        <h3 class="section-title">Additional Resources</h3>
+        <div class="section-content">
+          <p>Check out the <a href="https://github.com/Shopify/dashing/wiki" target="_blank">wiki</a> for interesting tips such as hosting on Heroku, or adding authentication.</p>
+          <p>Be sure to look at <a href="https://github.com/Shopify/dashing/wiki/Additional-Widgets" target="_blank">the list of third party widgets.</a></p>
+        </div>
+      </section>
+
+      <section class="section-box" id="compatibility">
+        <h3 class="section-title">Browser Compatibility</h3>
+        <div class="section-content">
+          <p>Tested in Chrome, Safari 6+, and Firefox 15+. </p>
+          <p>Does <strong>not</strong> work in Internet Explorer because it relies on <a href="http://www.html5rocks.com/en/tutorials/eventsource/basics/" target="_blank">Server Sent Events.</a></p>
+        </div>
+      </section>
+
+      <section class="section-box" id="authors">
+        <h3 class="section-title">Authors &amp; Maintainers</h3>
+        <div class="section-content">
+          <ul>
+            <li><a href="http://twitter.com/pushmatrix" target="_blank">Daniel Beauchamp</a></li>
+            <li><a href="http://twitter.com/serenangai" target="_blank">Serena Ngai </a></li>
+            <li><a href="http://twitter.com/tahnok" target="_blank">Wesley Ellis </a></li>
+            <li><a href="http://twitter.com/davefp" target="_blank">David Underwood </a></li>
+            <li><a href="http://twitter.com/tylermauthe" target="_blank">Tyler Mauthe </a></li>
+        </ul></div>
+      </section>
+
+      <section class="section-box" id="contributors">
+        <h3 class="section-title">Contributors</h3>
+        <div class="section-content">
+          <p><a href="https://github.com/Shopify/dashing/graphs/contributors">See contributors on GitHub</a></p>
+        </div>
+        <p>Although this project is not being actively maintained, there are tons of widgets being added by the community; <a href="https://github.com/Shopify/dashing/wiki/Additional-Widgets" target="_blank">especially new widgets!</a></p>
+      </section>
+
+      <section class="section-box" id="license">
+        <h3 class="section-title">License</h3>
+        <div class="section-content">
+          <p>Dashing is released under the <a href="https://github.com/Shopify/dashing/blob/master/MIT-LICENSE" target="_blank">MIT license</a></p>
+        </div>
+      </section>
+      <small>Copyright 2015 - Shopify</small>
+    </div>
+
+    <footer>
+    </footer>
+
+
+    <script src="Dashingframework_files/jquery.js"></script>
+
+  
+  
+</body></html>
